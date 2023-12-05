@@ -35,7 +35,11 @@ class All_Objects : public AttributeDisplay
 public:
 	virtual void Display() const;
 	virtual void EditValues();
+	static All_Objects* GetInstance();
+	static void Instantiate();
+	static void CleanUp();
 private:
+	static All_Objects* instance;
 	std::unordered_map<unsigned int, Object> m_objects;
 	std::unordered_map<std::string, Vis> m_visFiles;
 	std::unordered_map<std::string, Soundbank> m_soundbankFiles;
