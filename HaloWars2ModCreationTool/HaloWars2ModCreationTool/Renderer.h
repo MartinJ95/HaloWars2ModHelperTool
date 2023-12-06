@@ -27,8 +27,8 @@ public:
 	virtual void Display() const = 0;
 	virtual void Render() const = 0;
 	virtual void Clear() = 0;
-	virtual void BeginGUI() const = 0;
-	virtual bool GUIButton() = 0;
+	virtual void BeginGUI(const std::string &guiName) const = 0;
+	virtual bool GUIButton(const std::string& buttonName) = 0;
 	virtual void GUIText(const std::string& text) = 0;
 	virtual void EndGUI() const = 0;
 private:
@@ -44,8 +44,8 @@ public:
 	virtual void Display() const {}
 	virtual void Render() const {}
 	virtual void Clear() {}
-	virtual void BeginGUI() const {}
-	virtual bool GUIButton() { return false; }
+	virtual void BeginGUI(const std::string& guiName) const {}
+	virtual bool GUIButton(const std::string& buttonName) { return false; }
 	virtual void GUIText(const std::string& text) {}
 	virtual void EndGUI() const {}
 };
@@ -59,8 +59,8 @@ public:
 	virtual void Display() const;
 	virtual void Render() const;
 	virtual void Clear();
-	virtual void BeginGUI() const;
-	virtual bool GUIButton();
+	virtual void BeginGUI(const std::string& guiName) const;
+	virtual bool GUIButton(const std::string& buttonName);
 	virtual void GUIText(const std::string& text);
 	virtual void EndGUI() const;
 	~OpenGLRenderer();

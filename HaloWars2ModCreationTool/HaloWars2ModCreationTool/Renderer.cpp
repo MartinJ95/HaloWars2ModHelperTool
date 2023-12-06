@@ -35,11 +35,12 @@ bool OpenGLRenderer::Init()
 
 bool OpenGLRenderer::ShouldWindowClose() const
 {
-	return false;
+	return glfwWindowShouldClose(m_window);
 }
 
 void OpenGLRenderer::Display() const
 {
+	glfwSwapBuffers(m_window);
 }
 
 void OpenGLRenderer::Render() const
@@ -48,23 +49,27 @@ void OpenGLRenderer::Render() const
 
 void OpenGLRenderer::Clear()
 {
+	glClearColor(0, 0, 0, 0);
 }
 
-void OpenGLRenderer::BeginGUI() const
+void OpenGLRenderer::BeginGUI(const std::string& guiName) const
 {
+	ImGui::Begin(guiName.c_str());
 }
 
-bool OpenGLRenderer::GUIButton()
+bool OpenGLRenderer::GUIButton(const std::string& buttonName)
 {
-	return false;
+	return ImGui::Button(buttonName.c_str());
 }
 
 void OpenGLRenderer::GUIText(const std::string& text)
 {
+	ImGui::Text(text.c_str());
 }
 
 void OpenGLRenderer::EndGUI() const
 {
+	ImGui::End();
 }
 
 OpenGLRenderer::~OpenGLRenderer()
