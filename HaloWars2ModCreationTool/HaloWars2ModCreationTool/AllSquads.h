@@ -9,8 +9,8 @@ public:
 	virtual void Display() const;
 	virtual void EditValues();
 private:
-	std::string m_description;
-	std::vector<std::pair<unsigned int, Object>> m_squadMembers;
+	std::string m_description = "new squad";
+	std::vector<std::pair<unsigned int, unsigned int>> m_squadMembers;
 	Tactic* m_tacticRef;
 };
 
@@ -19,6 +19,7 @@ class AllSquads : public AttributeDisplay
 public:
 	virtual void Display() const;
 	virtual void EditValues();
+	void AddSquad();
 private:
 	std::vector<Squad> m_squads;
 };
