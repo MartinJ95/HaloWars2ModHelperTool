@@ -18,15 +18,27 @@ bool OpenGLRenderer::Init()
 		return false;
 
 	m_window = glfwCreateWindow(1280, 720, "Dear ImGui GLFW+OpenGL3 example", nullptr, nullptr);
+
 	if (m_window == nullptr)
-		return 1;
+		return false;
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	glfwMakeContextCurrent(m_window);
+
+	glViewport(0, 0, 1280, 720);
+	glEnable(GL_DEPTH_TEST);
+
 	
 	ImGui::CreateContext();
 	if (ImGui_ImplGlfw_InitForOpenGL(m_window, true) == false)
 		return false;
 
-	if (ImGui_ImplOpenGL3_Init("#version 130") == false)
+	if (ImGui_ImplOpenGL3_Init("#version 330 core") == false)
 		return false;
+		
 
 	ImGui::StyleColorsDark();
 	
@@ -40,6 +52,8 @@ bool OpenGLRenderer::ShouldWindowClose() const
 
 void OpenGLRenderer::Display() const
 {
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	glfwSwapBuffers(m_window);
 }
 
@@ -49,7 +63,11 @@ void OpenGLRenderer::Render() const
 
 void OpenGLRenderer::Clear()
 {
-	glClearColor(0, 0, 0, 0);
+	glClearColor(0.f, 0.25f, 0.5f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
 }
 
 void OpenGLRenderer::BeginGUI(const std::string& guiName) const

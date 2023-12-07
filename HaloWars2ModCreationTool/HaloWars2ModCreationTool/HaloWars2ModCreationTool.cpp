@@ -2,10 +2,23 @@
 //
 
 #include <iostream>
+#include "ServiceLocator.h"
 
 int main()
 {
     std::cout << "Hello World!\n";
+    ServiceLocator::Init();
+    if (!ServiceLocator::GetRenderer().Init())
+    {
+        ServiceLocator::CleanUp();
+        return -1;
+    }
+    while (!ServiceLocator::GetRenderer().ShouldWindowClose())
+    {
+        ServiceLocator::GetRenderer().Clear();
+        ServiceLocator::GetRenderer().Display();
+    }
+    ServiceLocator::CleanUp();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
