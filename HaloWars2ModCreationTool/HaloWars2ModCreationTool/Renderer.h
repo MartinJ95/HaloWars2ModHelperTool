@@ -4,6 +4,7 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+#include "imgui_stdlib.h"
 #include <stdio.h>
 #define GL_SILENCE_DEPRECATION
 #if defined(IMGUI_IMPL_OPENGL_ES2)
@@ -29,7 +30,8 @@ public:
 	virtual void Clear() = 0;
 	virtual void BeginGUI(const std::string &guiName) const = 0;
 	virtual bool GUIButton(const std::string& buttonName) = 0;
-	virtual void GUIText(const std::string& text) = 0;
+	virtual void GUIText(const std::string& text) const = 0;
+	virtual void GUIInputText(const std::string& label, std::string& text) = 0;
 	virtual void EndGUI() const = 0;
 private:
 	glm::vec2 m_screenSize;
@@ -46,7 +48,8 @@ public:
 	virtual void Clear() {}
 	virtual void BeginGUI(const std::string& guiName) const {}
 	virtual bool GUIButton(const std::string& buttonName) { return false; }
-	virtual void GUIText(const std::string& text) {}
+	virtual void GUIText(const std::string& text) const {}
+	virtual void GUIInputText(const std::string& label, std::string& text) {}
 	virtual void EndGUI() const {}
 };
 
@@ -61,7 +64,8 @@ public:
 	virtual void Clear();
 	virtual void BeginGUI(const std::string& guiName) const;
 	virtual bool GUIButton(const std::string& buttonName);
-	virtual void GUIText(const std::string& text);
+	virtual void GUIText(const std::string& text) const;
+	virtual void GUIInputText(const std::string& label, std::string& text);
 	virtual void EndGUI() const;
 	~OpenGLRenderer();
 private:

@@ -68,6 +68,8 @@ void OpenGLRenderer::Clear()
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
+
+	glfwPollEvents();
 }
 
 void OpenGLRenderer::BeginGUI(const std::string& guiName) const
@@ -80,9 +82,14 @@ bool OpenGLRenderer::GUIButton(const std::string& buttonName)
 	return ImGui::Button(buttonName.c_str());
 }
 
-void OpenGLRenderer::GUIText(const std::string& text)
+void OpenGLRenderer::GUIText(const std::string& text) const
 {
 	ImGui::Text(text.c_str());
+}
+
+void OpenGLRenderer::GUIInputText(const std::string& label,std::string& text)
+{
+	ImGui::InputText(label.c_str(), &text);
 }
 
 void OpenGLRenderer::EndGUI() const
