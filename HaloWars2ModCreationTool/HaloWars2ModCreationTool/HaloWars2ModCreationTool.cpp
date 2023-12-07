@@ -3,10 +3,16 @@
 
 #include <iostream>
 #include "ServiceLocator.h"
+#include "AllSquads.h"
 
 int main()
 {
     std::cout << "Hello World!\n";
+
+    All_Objects::Instantiate();
+
+    AllSquads squads;
+
     ServiceLocator::Init();
     if (!ServiceLocator::GetRenderer().Init())
     {
@@ -16,9 +22,23 @@ int main()
     while (!ServiceLocator::GetRenderer().ShouldWindowClose())
     {
         ServiceLocator::GetRenderer().Clear();
+
+        ServiceLocator::GetRenderer().BeginGUI("all_squads");
+
+        squads.Display();
+        squads.EditValues();
+
+        if (ServiceLocator::GetRenderer().GUIButton("Add Squad"))
+        {
+            squads.AddSquad();
+        }
+
+        ServiceLocator::GetRenderer().EndGUI();
+
         ServiceLocator::GetRenderer().Display();
     }
     ServiceLocator::CleanUp();
+    All_Objects::CleanUp();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
