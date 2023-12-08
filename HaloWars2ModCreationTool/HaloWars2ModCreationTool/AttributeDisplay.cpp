@@ -5,6 +5,15 @@ AttributeDisplay::AttributeDisplay() : ID(ServiceLocator::GetIDDispatcher().Clai
 {
 }
 
+AttributeDisplay::AttributeDisplay(AttributeDisplay& other) : ID(other.ID), name(other.name)
+{
+}
+
+AttributeDisplay::AttributeDisplay(AttributeDisplay&& other) : ID(other.ID), name(other.name)
+{
+	other.ID = UINT64_MAX;
+}
+
 void AttributeDisplay::Display() const
 {
 	ServiceLocator::GetRenderer().GUIText("ID: ");

@@ -5,6 +5,8 @@ class AttributeDisplay
 {
 public:
 	AttributeDisplay();
+	AttributeDisplay(AttributeDisplay& other);
+	AttributeDisplay(AttributeDisplay&& other);
 	virtual void Display() const;
 	virtual void EditValues();
 	unsigned int GetID() const
@@ -14,6 +16,17 @@ public:
 	const std::string& GetName() const
 	{
 		return name;
+	}
+	void operator=(AttributeDisplay& other)
+	{
+		ID = other.ID;
+		name = other.name;
+	}
+	void operator=(AttributeDisplay&& other)
+	{
+		ID = other.ID;
+		name = other.name;
+		other.ID = UINT64_MAX;
 	}
 	~AttributeDisplay();
 protected:
