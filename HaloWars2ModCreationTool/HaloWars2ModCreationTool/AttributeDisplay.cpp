@@ -5,11 +5,11 @@ AttributeDisplay::AttributeDisplay() : ID(ServiceLocator::GetIDDispatcher().Clai
 {
 }
 
-AttributeDisplay::AttributeDisplay(AttributeDisplay& other) : ID(other.ID), name(other.name), MarkedForDeletion(other.MarkedForDeletion)
+AttributeDisplay::AttributeDisplay(AttributeDisplay& other) : ID(other.ID), name(other.name), MarkedForDeletion(false)
 {
 }
 
-AttributeDisplay::AttributeDisplay(AttributeDisplay&& other) : ID(other.ID), name(other.name), MarkedForDeletion(other.MarkedForDeletion)
+AttributeDisplay::AttributeDisplay(AttributeDisplay&& other) : ID(other.ID), name(other.name), MarkedForDeletion(false)
 {
 	other.ID = UINT64_MAX;
 }
@@ -25,7 +25,7 @@ void AttributeDisplay::Display() const
 void AttributeDisplay::EditValues()
 {
 	ServiceLocator::GetRenderer().GUIInputText(std::to_string(ID) + ": New Name: ", name);
-	if (ServiceLocator::GetRenderer().GUIButton(std::string("delete object")))
+	if (ServiceLocator::GetRenderer().GUIButton(std::to_string(ID) + "delete object"))
 	{
 		MarkedForDeletion = true;
 	}

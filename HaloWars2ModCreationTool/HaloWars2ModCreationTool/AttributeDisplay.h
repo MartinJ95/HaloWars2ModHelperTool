@@ -22,11 +22,13 @@ public:
 	{
 		ID = other.ID;
 		name = other.name;
+		MarkedForDeletion = false;
 	}
 	void operator=(AttributeDisplay&& other)
 	{
 		ID = other.ID;
 		name = other.name;
+		MarkedForDeletion = false;
 		other.ID = UINT64_MAX;
 	}
 	~AttributeDisplay();
