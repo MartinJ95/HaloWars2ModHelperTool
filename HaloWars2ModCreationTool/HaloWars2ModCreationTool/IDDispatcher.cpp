@@ -2,6 +2,10 @@
 
 IDDispatcher::IDDispatcher() : m_current(0), m_size(10), m_data(new unsigned int[10])
 {
+	for (int i = 0; i < m_size; i++)
+	{
+		m_data[i] = i;
+	}
 }
 
 unsigned int IDDispatcher::ClaimID()
