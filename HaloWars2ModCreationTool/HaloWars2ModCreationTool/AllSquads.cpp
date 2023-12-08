@@ -45,16 +45,31 @@ void AllSquads::EditValues()
 
 void AllSquads::CleanUpObjects()
 {
-	std::vector<Squad>::reverse_iterator rit;
+	if (m_squads.empty())
+		return;
+
+	for (int i = m_squads.size()-1; i >= 0; i--)
+	{
+		if (m_squads[i].GetDeletionMark())
+		{
+			m_squads.erase(m_squads.begin() + i);
+		}
+	}
+
+	/*
+	std::vector<Squad>::reverse_iterator rit = m_squads.rbegin();
 
 	while (rit != m_squads.rend())
 	{
 		if (rit->GetDeletionMark())
 		{
-			m_squads.erase(--(rit.base()));
+			m_squads.erase(((rit-1).base()));
 		}
+		if (m_squads.empty() || rit == m_squads.rend())
+			return;
 		rit++;
 	}
+	*/
 }
 
 void AllSquads::AddSquad()

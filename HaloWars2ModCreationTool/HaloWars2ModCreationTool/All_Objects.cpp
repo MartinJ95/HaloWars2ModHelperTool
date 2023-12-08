@@ -37,6 +37,9 @@ void All_Objects::EditValues()
 
 void All_Objects::CleanUpObjects()
 {
+    if (m_objects.empty())
+        return;
+
     for (auto it = m_objects.begin(); it != m_objects.end();)
     {
         if (it->second.GetDeletionMark())
