@@ -25,6 +25,10 @@ void AttributeDisplay::Display() const
 void AttributeDisplay::EditValues()
 {
 	ServiceLocator::GetRenderer().GUIInputText(std::to_string(ID) + ": New Name: ", name);
+	if (ServiceLocator::GetRenderer().GUIButton(std::string("delete object")))
+	{
+		MarkedForDeletion = true;
+	}
 }
 
 bool AttributeDisplay::GetDeletionMark() const
