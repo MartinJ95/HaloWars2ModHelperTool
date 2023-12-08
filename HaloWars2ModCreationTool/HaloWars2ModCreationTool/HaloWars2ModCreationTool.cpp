@@ -35,6 +35,14 @@ int main()
 
         ServiceLocator::GetRenderer().EndGUI();
 
+        ServiceLocator::GetRenderer().BeginGUI("all_objects");
+
+        All_Objects::GetInstance()->Display();
+        All_Objects::GetInstance()->EditValues();
+
+
+        ServiceLocator::GetRenderer().EndGUI();
+
         ServiceLocator::GetRenderer().Display();
     }
     ServiceLocator::CleanUp();
