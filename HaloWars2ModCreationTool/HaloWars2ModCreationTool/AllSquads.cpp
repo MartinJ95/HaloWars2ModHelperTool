@@ -3,8 +3,7 @@
 
 void Squad::Display() const
 {
-	ServiceLocator::GetRenderer().GUIText("Squad Name: ");
-	ServiceLocator::GetRenderer().GUIText(name);
+	AttributeDisplay::Display();
 	ServiceLocator::GetRenderer().GUIText("Squad Description");
 	ServiceLocator::GetRenderer().GUIText(m_description);
 
@@ -19,7 +18,7 @@ void Squad::Display() const
 
 void Squad::EditValues()
 {
-	ServiceLocator::GetRenderer().GUIInputText(std::string("new name"), name);
+	AttributeDisplay::EditValues();
 	ServiceLocator::GetRenderer().GUIInputText(std::string("new description:"), m_description);
 
 	if (ServiceLocator::GetRenderer().GUIButton("Add Member"))
