@@ -1,15 +1,15 @@
 #include "AttributeDisplay.h"
 #include "ServiceLocator.h"
 
-AttributeDisplay::AttributeDisplay() : ID(ServiceLocator::GetIDDispatcher().ClaimID()), name()
+AttributeDisplay::AttributeDisplay() : ID(ServiceLocator::GetIDDispatcher().ClaimID()), name(), MarkedForDeletion(false)
 {
 }
 
-AttributeDisplay::AttributeDisplay(AttributeDisplay& other) : ID(other.ID), name(other.name)
+AttributeDisplay::AttributeDisplay(AttributeDisplay& other) : ID(other.ID), name(other.name), MarkedForDeletion(other.MarkedForDeletion)
 {
 }
 
-AttributeDisplay::AttributeDisplay(AttributeDisplay&& other) : ID(other.ID), name(other.name)
+AttributeDisplay::AttributeDisplay(AttributeDisplay&& other) : ID(other.ID), name(other.name), MarkedForDeletion(other.MarkedForDeletion)
 {
 	other.ID = UINT64_MAX;
 }
@@ -25,6 +25,11 @@ void AttributeDisplay::Display() const
 void AttributeDisplay::EditValues()
 {
 	ServiceLocator::GetRenderer().GUIInputText(std::to_string(ID) + ": New Name: ", name);
+}
+
+bool AttributeDisplay::GetDeletionMark() const
+{
+	return MarkedForDeletion;
 }
 
 AttributeDisplay::~AttributeDisplay()

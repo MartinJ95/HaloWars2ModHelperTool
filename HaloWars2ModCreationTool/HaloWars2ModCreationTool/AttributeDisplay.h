@@ -17,6 +17,7 @@ public:
 	{
 		return name;
 	}
+	bool GetDeletionMark() const;
 	void operator=(AttributeDisplay& other)
 	{
 		ID = other.ID;
@@ -32,6 +33,7 @@ public:
 protected:
 	unsigned int ID;
 	std::string name;
+	bool MarkedForDeletion;
 
 };
 
