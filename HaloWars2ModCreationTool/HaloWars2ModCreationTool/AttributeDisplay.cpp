@@ -1,6 +1,10 @@
 #include "AttributeDisplay.h"
 #include "ServiceLocator.h"
 
+AttributeDisplay::AttributeDisplay() : ID(ServiceLocator::GetIDDispatcher().ClaimID()), name()
+{
+}
+
 void AttributeDisplay::Display() const
 {
 	ServiceLocator::GetRenderer().GUIText("ID: ");
@@ -12,4 +16,9 @@ void AttributeDisplay::Display() const
 void AttributeDisplay::EditValues()
 {
 	ServiceLocator::GetRenderer().GUIInputText(std::to_string(ID) + ": New Name: ", name);
+}
+
+AttributeDisplay::~AttributeDisplay()
+{
+	ServiceLocator::GetIDDispatcher().ReleaseID(ID);
 }

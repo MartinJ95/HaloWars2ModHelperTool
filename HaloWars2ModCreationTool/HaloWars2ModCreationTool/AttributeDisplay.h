@@ -4,6 +4,7 @@
 class AttributeDisplay
 {
 public:
+	AttributeDisplay();
 	virtual void Display() const;
 	virtual void EditValues();
 	unsigned int GetID() const
@@ -14,6 +15,7 @@ public:
 	{
 		return name;
 	}
+	~AttributeDisplay();
 protected:
 	unsigned int ID;
 	std::string name;
