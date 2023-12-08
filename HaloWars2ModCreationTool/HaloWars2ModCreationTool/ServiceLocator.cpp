@@ -1,6 +1,7 @@
 #include "ServiceLocator.h"
 
 Renderer* ServiceLocator::renderer{ new NullRenderer() };
+IDDispatcher ServiceLocator::IDDispatch{};
 
 void ServiceLocator::Init()
 {
@@ -11,6 +12,12 @@ void ServiceLocator::Init()
 Renderer& ServiceLocator::GetRenderer()
 {
 	return *renderer;
+}
+
+IDDispatcher& ServiceLocator::GetIDDispatcher()
+{
+	return IDDispatch;
+	// TODO: insert return statement here
 }
 
 void ServiceLocator::CleanUp()
