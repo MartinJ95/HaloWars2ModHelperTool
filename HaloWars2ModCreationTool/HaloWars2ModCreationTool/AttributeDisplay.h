@@ -4,8 +4,8 @@
 class AttributeDisplay
 {
 public:
-	virtual void Display() const = 0;
-	virtual void EditValues() = 0;
+	virtual void Display() const;
+	virtual void EditValues();
 	unsigned int GetID() const
 	{
 		return ID;
