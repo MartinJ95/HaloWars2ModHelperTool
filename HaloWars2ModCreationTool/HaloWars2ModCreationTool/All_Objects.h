@@ -35,6 +35,7 @@ class All_Objects
 public:
 	virtual void Display() const;
 	virtual void EditValues();
+	virtual void CleanUpObjects();
 	static All_Objects* GetInstance();
 	static void Instantiate();
 	static void CleanUp();

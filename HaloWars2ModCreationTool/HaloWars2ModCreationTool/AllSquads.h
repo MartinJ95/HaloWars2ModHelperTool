@@ -19,6 +19,7 @@ class AllSquads
 public:
 	virtual void Display() const;
 	virtual void EditValues();
+	virtual void CleanUpObjects();
 	void AddSquad();
 private:
 	std::vector<Squad> m_squads;
