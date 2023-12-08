@@ -14,7 +14,7 @@ private:
 	Tactic* m_tacticRef;
 };
 
-class AllSquads : public AttributeDisplay
+class AllSquads
 {
 public:
 	virtual void Display() const;

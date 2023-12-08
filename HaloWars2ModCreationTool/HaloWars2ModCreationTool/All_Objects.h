@@ -30,7 +30,7 @@ public:
 private:
 };
 
-class All_Objects : public AttributeDisplay
+class All_Objects
 {
 public:
 	virtual void Display() const;
