@@ -44,6 +44,9 @@ int main()
         ServiceLocator::GetRenderer().EndGUI();
 
         ServiceLocator::GetRenderer().Display();
+
+        All_Objects::GetInstance()->CleanUpObjects();
+        squads.CleanUpObjects();
     }
     ServiceLocator::CleanUp();
     All_Objects::CleanUp();
