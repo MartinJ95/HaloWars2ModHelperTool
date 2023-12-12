@@ -7,6 +7,7 @@ public:
 	AttributeDisplay();
 	AttributeDisplay(AttributeDisplay& other);
 	AttributeDisplay(AttributeDisplay&& other);
+	AttributeDisplay(unsigned int id);
 	virtual void Display() const;
 	virtual void EditValues();
 	unsigned int GetID() const

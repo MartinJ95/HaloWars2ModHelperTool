@@ -14,6 +14,10 @@ AttributeDisplay::AttributeDisplay(AttributeDisplay&& other) : ID(other.ID), nam
 	other.ID = UINT64_MAX;
 }
 
+AttributeDisplay::AttributeDisplay(unsigned int id) : ID(id), name(), MarkedForDeletion(false)
+{
+}
+
 void AttributeDisplay::Display() const
 {
 	ServiceLocator::GetRenderer().GUIText("ID: ");
