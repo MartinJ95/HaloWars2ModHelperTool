@@ -18,6 +18,23 @@ unsigned int IDDispatcher::ClaimID()
 	return m_data[m_current-1];
 }
 
+unsigned int IDDispatcher::ClaimID(unsigned int specificID)
+{
+	for (int i = m_current; i < m_size; i++)
+	{
+		if (m_data[i] == specificID)
+		{
+			if (m_size == m_current)
+			{
+				Resize(m_size + 1);
+			}
+			Swap(m_current, i);
+			m_current++;
+			return m_data[m_current - 1];
+		}
+	}
+}
+
 void IDDispatcher::ReleaseID(const unsigned int id)
 {
 	for (int i = 0; i < m_current; i++)

@@ -6,6 +6,7 @@ class IDDispatcher
 public:
 	IDDispatcher();
 	unsigned int ClaimID();
+	unsigned int ClaimID(unsigned int specificID);
 	void ReleaseID(const unsigned int id);
 	~IDDispatcher();
 private:
