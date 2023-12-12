@@ -3,6 +3,14 @@
 
 All_Objects* All_Objects::instance{ nullptr };
 
+void Object::Save(std::ifstream &stream)
+{
+}
+
+void Object::Load(std::ofstream& stream)
+{
+}
+
 void Object::Display() const
 {
     AttributeDisplay::Display();
@@ -11,6 +19,19 @@ void Object::Display() const
 void Object::EditValues()
 {
     AttributeDisplay::EditValues();
+}
+
+void All_Objects::Save(std::ifstream& stream)
+{
+    for (auto& o : m_objects)
+    {
+        o.second.Save(stream);
+    }
+}
+
+void All_Objects::Load(std::ofstream& stream)
+{
+    
 }
 
 void All_Objects::Display() const
