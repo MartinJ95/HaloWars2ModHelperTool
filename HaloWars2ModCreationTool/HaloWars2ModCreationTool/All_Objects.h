@@ -26,8 +26,8 @@ class UGX
 class Object : public AttributeDisplay, public SavableType
 {
 public:
-	virtual void Save(std::ifstream& stream);
-	virtual void Load(std::ofstream &stream);
+	virtual void Save(std::ifstream& stream) override;
+	virtual void Load(std::ofstream &stream) override;
 	virtual void Display() const;
 	virtual void EditValues();
 private:
@@ -36,8 +36,8 @@ private:
 class All_Objects : public SavableType
 {
 public:
-	virtual void Save(std::ifstream& stream);
-	virtual void Load(std::ofstream& stream);
+	virtual void Save(std::ifstream& stream) override;
+	virtual void Load(std::ofstream& stream) override;
 	virtual void Display() const;
 	virtual void EditValues();
 	virtual void CleanUpObjects();
