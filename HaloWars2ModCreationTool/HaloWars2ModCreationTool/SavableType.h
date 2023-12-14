@@ -4,7 +4,7 @@
 class SavableType
 {
 public:
-	virtual void Save(std::ifstream &stream) = 0;
-	virtual void Load(std::ofstream &stream) = 0;
+	virtual void Save(std::ofstream &stream) = 0;
+	virtual void Load(std::ifstream &stream) = 0;
 };
 
