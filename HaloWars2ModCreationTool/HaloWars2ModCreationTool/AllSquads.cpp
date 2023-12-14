@@ -27,6 +27,14 @@ void Squad::EditValues()
 	}
 }
 
+void Squad::Save(std::ofstream& stream)
+{
+}
+
+void Squad::Load(std::ifstream& stream)
+{
+}
+
 void AllSquads::Display() const
 {
 	for (auto& s : m_squads)
@@ -41,6 +49,31 @@ void AllSquads::EditValues()
 	{
 		s.EditValues();
 	}
+}
+
+void AllSquads::Save(std::ofstream& stream)
+{
+	for (auto& s : m_squads)
+	{
+		stream << std::string("squad") + "\n";
+		s.Save(stream);
+	}
+}
+
+void AllSquads::Load(std::ifstream& stream)
+{
+	std::streampos p = stream.tellg();
+	char* c = nullptr;
+	stream.getline(c, std::streamsize());
+	while (c == "squad")
+	{
+		m_squads.emplace_back();
+		m_squads.back().Load(stream);
+
+		p = stream.tellg();
+		stream.getline(c, std::streamsize());
+	}
+	stream.seekg(p);
 }
 
 void AllSquads::CleanUpObjects()
