@@ -37,9 +37,26 @@ int main()
 
         ServiceLocator::GetRenderer().BeginGUI("all_objects");
 
+        if (ServiceLocator::GetRenderer().GUIButton("all_objects save: "))
+        {
+            All_Objects::GetInstance()->EnableFlags((uint8_t)SavableTypeContainerFlags::eSave);
+        }
+        if (ServiceLocator::GetRenderer().GUIButton("all_objects load: "))
+        {
+            All_Objects::GetInstance()->EnableFlags((uint8_t)SavableTypeContainerFlags::eLoad);
+        }
+
         All_Objects::GetInstance()->Display();
         All_Objects::GetInstance()->EditValues();
-
+        
+        if (All_Objects::GetInstance()->GetFlags() & (uint8_t)SavableTypeContainerFlags::eSave)
+        {
+            All_Objects::GetInstance()->DisableFlags((uint8_t)SavableTypeContainerFlags::eSave);
+        }
+        if (All_Objects::GetInstance()->GetFlags() & (uint8_t)SavableTypeContainerFlags::eLoad)
+        {
+            All_Objects::GetInstance()->DisableFlags((uint8_t)SavableTypeContainerFlags::eLoad);
+        }
 
         ServiceLocator::GetRenderer().EndGUI();
 
