@@ -1,7 +1,7 @@
 #include "AttributeDisplay.h"
 #include "ServiceLocator.h"
 
-AttributeDisplay::AttributeDisplay() : ID(ServiceLocator::GetIDDispatcher().ClaimID()), name(), MarkedForDeletion(false)
+AttributeDisplay::AttributeDisplay() : ID(ServiceLocator::GetIDDispatcher().ClaimID()), name("thing"), MarkedForDeletion(false)
 {
 }
 

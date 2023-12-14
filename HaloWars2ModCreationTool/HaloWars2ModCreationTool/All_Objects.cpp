@@ -34,23 +34,22 @@ void All_Objects::Save(std::ofstream& stream)
         stream << std::string("object") + "\n";
         o.second.Save(stream);
     }
+    stream << "end";
 }
 
 void All_Objects::Load(std::ifstream& stream)
 {
     std::streampos p = stream.tellg();
-    char* c = nullptr;
-    stream.getline(c, std::streamsize());
+    std::string c= "";
+    stream >> c;
+    //stream.getline(c, std::streamsize());
     while (c == "object")
     {
         Object newObject;
         newObject.Load(stream);
         m_objects.emplace(std::pair<unsigned int, Object>(newObject.GetID(), std::move(newObject)));
-
-        p = stream.tellg();
-        stream.getline(c, std::streamsize());
+        stream >> c;
     }
-    stream.seekg(p);
 }
 
 void All_Objects::DisplayAll() const
