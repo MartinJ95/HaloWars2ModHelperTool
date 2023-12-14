@@ -86,7 +86,7 @@ int main()
         ContainerSaveLoadExecute("AllObjects", "all_objects", All_Objects::GetInstance());
     }
     ServiceLocator::CleanUp();
-    All_Objects::CleanUp();
+    All_Objects::CleanUpInstance();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
