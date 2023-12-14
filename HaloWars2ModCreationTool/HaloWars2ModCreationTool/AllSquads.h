@@ -19,12 +19,11 @@ private:
 class AllSquads : public SavableTypeContainer
 {
 public:
-	virtual void Display() const;
-	virtual void EditValues();
+	virtual void DisplayAll() const override;
+	virtual void EditValuesAll();
 	virtual void Save(std::ofstream& stream) override;
 	virtual void Load(std::ifstream& stream) override;
 	void CleanUpObjects();
-	void AddSquad();
 private:
 	std::vector<Squad> m_squads;
 };

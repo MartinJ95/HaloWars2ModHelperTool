@@ -38,8 +38,8 @@ class All_Objects : public SavableTypeContainer
 public:
 	virtual void Save(std::ofstream& stream) override;
 	virtual void Load(std::ifstream& stream) override;
-	virtual void Display() const;
-	virtual void EditValues();
+	virtual void DisplayAll() const;
+	virtual void EditValuesAll();
 	void CleanUpObjects();
 	static All_Objects* GetInstance();
 	static void Instantiate();

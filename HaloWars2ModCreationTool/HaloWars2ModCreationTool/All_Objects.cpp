@@ -53,7 +53,7 @@ void All_Objects::Load(std::ifstream& stream)
     stream.seekg(p);
 }
 
-void All_Objects::Display() const
+void All_Objects::DisplayAll() const
 {
     for (auto& o : m_objects)
     {
@@ -61,7 +61,7 @@ void All_Objects::Display() const
     }
 }
 
-void All_Objects::EditValues()
+void All_Objects::EditValuesAll()
 {
     for (auto& o : m_objects)
     {

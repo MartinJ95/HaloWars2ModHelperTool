@@ -35,7 +35,7 @@ void Squad::Load(std::ifstream& stream)
 {
 }
 
-void AllSquads::Display() const
+void AllSquads::DisplayAll() const
 {
 	for (auto& s : m_squads)
 	{
@@ -43,11 +43,16 @@ void AllSquads::Display() const
 	}
 }
 
-void AllSquads::EditValues()
+void AllSquads::EditValuesAll()
 {
 	for (auto& s : m_squads)
 	{
 		s.EditValues();
+	}
+
+	if (ServiceLocator::GetRenderer().GUIButton("Add Squad"))
+	{
+		m_squads.emplace_back();
 	}
 }
 
@@ -103,9 +108,4 @@ void AllSquads::CleanUpObjects()
 		rit++;
 	}
 	*/
-}
-
-void AllSquads::AddSquad()
-{
-	m_squads.emplace_back();
 }

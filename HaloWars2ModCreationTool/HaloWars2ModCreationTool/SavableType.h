@@ -22,6 +22,8 @@ public:
 	void SetFlags(uint8_t flags);
 	void DisableFlags(uint8_t flags);
 	void EnableFlags(uint8_t flags);
+	virtual void DisplayAll() const = 0;
+	virtual void EditValuesAll() = 0;
 protected:
 	uint8_t m_flags = (uint8_t)SavableTypeContainerFlags::eDefault;
 };
