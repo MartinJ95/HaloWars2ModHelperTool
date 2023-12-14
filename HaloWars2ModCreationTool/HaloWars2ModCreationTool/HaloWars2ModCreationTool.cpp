@@ -5,6 +5,44 @@
 #include "ServiceLocator.h"
 #include "AllSquads.h"
 
+inline void ContainerSaveLoadSet(const std::string &&containerName, SavableTypeContainer* container)
+{
+    if (ServiceLocator::GetRenderer().GUIButton(containerName + " save: "))
+    {
+        container->EnableFlags((uint8_t)SavableTypeContainerFlags::eSave);
+    }
+    if (ServiceLocator::GetRenderer().GUIButton(containerName + " load: "))
+    {
+        container->EnableFlags((uint8_t)SavableTypeContainerFlags::eLoad);
+    }
+}
+
+inline void ContainerSaveLoadExecute(const std::string &&filePath, const std::string &&containerName, SavableTypeContainer* container)
+{
+    if (container->GetFlags() & (uint8_t)SavableTypeContainerFlags::eSave)
+    {
+        container->DisableFlags((uint8_t)SavableTypeContainerFlags::eSave);
+        
+        std::ofstream stream(filePath);
+        
+        if (stream.is_open())
+        {
+            container->Save(stream);
+        }
+    }
+    if (container->GetFlags() & (uint8_t)SavableTypeContainerFlags::eLoad)
+    {
+        container->DisableFlags((uint8_t)SavableTypeContainerFlags::eLoad);
+
+        std::ifstream stream(filePath);
+
+        if (stream.is_open())
+        {
+            container->Load(stream);
+        }
+    }
+}
+
 int main()
 {
     std::cout << "Hello World!\n";
