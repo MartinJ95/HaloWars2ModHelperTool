@@ -11,8 +11,8 @@ public:
 enum class SavableTypeContainerFlags
 {
 	eDefault = 0b00000000,
-	eSave = 0b00000000,
-	eLoad = 0b00000000
+	eSave = 0b00000001,
+	eLoad = 0b00000010
 };
 
 class SavableTypeContainer : public SavableType
