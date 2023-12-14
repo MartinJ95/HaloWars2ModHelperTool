@@ -73,23 +73,9 @@ int main()
     {
         ServiceLocator::GetRenderer().Clear();
 
-        ServiceLocator::GetRenderer().BeginGUI("all_squads");
+        ManageContainerGUI("all_squads", &squads);
 
-        ContainerSaveLoadSet("all_squads", &squads);
-
-        squads.DisplayAll();
-        squads.EditValuesAll();             
-
-        ServiceLocator::GetRenderer().EndGUI();
-
-        ServiceLocator::GetRenderer().BeginGUI("all_objects");
-
-        ContainerSaveLoadSet("all_objects", All_Objects::GetInstance());
-
-        All_Objects::GetInstance()->DisplayAll();
-        All_Objects::GetInstance()->EditValuesAll();
-
-        ServiceLocator::GetRenderer().EndGUI();
+        ManageContainerGUI("all_objects", All_Objects::GetInstance());
 
         ServiceLocator::GetRenderer().Display();
 
