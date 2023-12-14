@@ -43,6 +43,18 @@ inline void ContainerSaveLoadExecute(const std::string &&filePath, const std::st
     }
 }
 
+inline void ManageContainerGUI(const std::string&& containerName, SavableTypeContainer* container)
+{
+    ServiceLocator::GetRenderer().BeginGUI(containerName);
+
+    ContainerSaveLoadSet(std::move(containerName), container);
+
+    container->DisplayAll();
+    container->EditValuesAll();
+
+    ServiceLocator::GetRenderer().EndGUI();
+}
+
 int main()
 {
     std::cout << "Hello World!\n";
@@ -65,14 +77,8 @@ int main()
 
         ContainerSaveLoadSet("all_squads", &squads);
 
-        squads.Display();
-        squads.EditValues();
-
-        if (ServiceLocator::GetRenderer().GUIButton("Add Squad"))
-        {
-            squads.AddSquad();
-        }
-             
+        squads.DisplayAll();
+        squads.EditValuesAll();             
 
         ServiceLocator::GetRenderer().EndGUI();
 
@@ -80,8 +86,8 @@ int main()
 
         ContainerSaveLoadSet("all_objects", All_Objects::GetInstance());
 
-        All_Objects::GetInstance()->Display();
-        All_Objects::GetInstance()->EditValues();
+        All_Objects::GetInstance()->DisplayAll();
+        All_Objects::GetInstance()->EditValuesAll();
 
         ServiceLocator::GetRenderer().EndGUI();
 
