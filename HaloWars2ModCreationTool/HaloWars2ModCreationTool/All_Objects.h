@@ -40,7 +40,7 @@ public:
 	virtual void Load(std::ifstream& stream) override;
 	virtual void Display() const;
 	virtual void EditValues();
-	virtual void CleanUpObjects();
+	void CleanUpObjects();
 	static All_Objects* GetInstance();
 	static void Instantiate();
 	static void CleanUp();
