@@ -19,6 +19,9 @@ class SavableTypeContainer : public SavableType
 {
 public:
 	uint8_t GetFlags();
+	void SetFlags(uint8_t flags);
+	void DisableFlags(uint8_t flags);
+	void EnableFlags(uint8_t flags);
 protected:
 	uint8_t m_flags = (uint8_t)SavableTypeContainerFlags::eDefault;
 };
