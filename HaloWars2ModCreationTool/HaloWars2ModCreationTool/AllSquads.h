@@ -23,7 +23,8 @@ public:
 	virtual void EditValuesAll();
 	virtual void Save(std::ofstream& stream) override;
 	virtual void Load(std::ifstream& stream) override;
-	void CleanUpObjects();
+	virtual void CleanUp() override;
+	virtual void CleanUpObjects() override;
 private:
 	std::vector<Squad> m_squads;
 };

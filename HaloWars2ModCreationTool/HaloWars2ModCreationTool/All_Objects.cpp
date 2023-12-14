@@ -34,12 +34,13 @@ void All_Objects::Save(std::ofstream& stream)
         stream << std::string("object") + "\n";
         o.second.Save(stream);
     }
-    stream << "end";
+    stream << std::string("end") + "\n";
 }
 
 void All_Objects::Load(std::ifstream& stream)
 {
-    std::streampos p = stream.tellg();
+    CleanUp();
+
     std::string c= "";
     stream >> c;
     //stream.getline(c, std::streamsize());
@@ -101,6 +102,11 @@ void All_Objects::Instantiate()
 }
 
 void All_Objects::CleanUp()
+{
+    m_objects.clear();
+}
+
+void All_Objects::CleanUpInstance()
 {
     delete instance;
 }

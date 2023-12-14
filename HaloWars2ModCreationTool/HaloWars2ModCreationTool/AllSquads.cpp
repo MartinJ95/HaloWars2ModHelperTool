@@ -63,36 +63,30 @@ void AllSquads::Save(std::ofstream& stream)
 		stream << std::string("squad") + "\n";
 		s.Save(stream);
 	}
+	stream << std::string("end") + "\n";
 }
 
 void AllSquads::Load(std::ifstream& stream)
 {
-	std::streampos p = stream.tellg();
-	char* c = nullptr;
-	stream.getline(c, std::streamsize());
+	CleanUp();
+	std::string c("");
+	stream >> c;
+	//char* c = nullptr;
+	//stream.getline(c, std::streamsize());
 	while (c == "squad")
 	{
 		m_squads.emplace_back();
 		m_squads.back().Load(stream);
 
-		p = stream.tellg();
-		stream.getline(c, std::streamsize());
+		//stream.getline(c, std::streamsize());
+		stream >> c;
 	}
-	stream.seekg(p);
+	//stream.seekg(p);
 }
 
-void AllSquads::CleanUpObjects()
+void AllSquads::CleanUp()
 {
-	if (m_squads.empty())
-		return;
-
-	for (int i = m_squads.size()-1; i >= 0; i--)
-	{
-		if (m_squads[i].GetDeletionMark())
-		{
-			m_squads.erase(m_squads.begin() + i);
-		}
-	}
+	m_squads.clear();
 
 	/*
 	std::vector<Squad>::reverse_iterator rit = m_squads.rbegin();
@@ -108,4 +102,18 @@ void AllSquads::CleanUpObjects()
 		rit++;
 	}
 	*/
+}
+
+void AllSquads::CleanUpObjects()
+{
+	if (m_squads.empty())
+		return;
+
+	for (int i = m_squads.size() - 1; i >= 0; i--)
+	{
+		if (m_squads[i].GetDeletionMark())
+		{
+			m_squads.erase(m_squads.begin() + i);
+		}
+	}
 }

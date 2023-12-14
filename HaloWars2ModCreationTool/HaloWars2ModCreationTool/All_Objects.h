@@ -40,10 +40,11 @@ public:
 	virtual void Load(std::ifstream& stream) override;
 	virtual void DisplayAll() const;
 	virtual void EditValuesAll();
-	void CleanUpObjects();
+	virtual void CleanUp() override;
+	virtual void CleanUpObjects() override;
 	static All_Objects* GetInstance();
 	static void Instantiate();
-	static void CleanUp();
+	static void CleanUpInstance();
 private:
 	static All_Objects* instance;
 	std::unordered_map<unsigned int, Object> m_objects;
