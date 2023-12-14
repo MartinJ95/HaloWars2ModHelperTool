@@ -63,6 +63,8 @@ int main()
 
         ServiceLocator::GetRenderer().BeginGUI("all_squads");
 
+        ContainerSaveLoadSet("all_squads", &squads);
+
         squads.Display();
         squads.EditValues();
 
@@ -70,31 +72,16 @@ int main()
         {
             squads.AddSquad();
         }
+             
 
         ServiceLocator::GetRenderer().EndGUI();
 
         ServiceLocator::GetRenderer().BeginGUI("all_objects");
 
-        if (ServiceLocator::GetRenderer().GUIButton("all_objects save: "))
-        {
-            All_Objects::GetInstance()->EnableFlags((uint8_t)SavableTypeContainerFlags::eSave);
-        }
-        if (ServiceLocator::GetRenderer().GUIButton("all_objects load: "))
-        {
-            All_Objects::GetInstance()->EnableFlags((uint8_t)SavableTypeContainerFlags::eLoad);
-        }
+        ContainerSaveLoadSet("all_objects", All_Objects::GetInstance());
 
         All_Objects::GetInstance()->Display();
         All_Objects::GetInstance()->EditValues();
-        
-        if (All_Objects::GetInstance()->GetFlags() & (uint8_t)SavableTypeContainerFlags::eSave)
-        {
-            All_Objects::GetInstance()->DisableFlags((uint8_t)SavableTypeContainerFlags::eSave);
-        }
-        if (All_Objects::GetInstance()->GetFlags() & (uint8_t)SavableTypeContainerFlags::eLoad)
-        {
-            All_Objects::GetInstance()->DisableFlags((uint8_t)SavableTypeContainerFlags::eLoad);
-        }
 
         ServiceLocator::GetRenderer().EndGUI();
 
@@ -102,6 +89,9 @@ int main()
 
         All_Objects::GetInstance()->CleanUpObjects();
         squads.CleanUpObjects();
+
+        ContainerSaveLoadExecute("All_Squads", "all_squads", &squads);
+        ContainerSaveLoadExecute("AllObjects", "all_objects", All_Objects::GetInstance());
     }
     ServiceLocator::CleanUp();
     All_Objects::CleanUp();
